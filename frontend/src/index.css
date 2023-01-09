@@ -1,13 +1,42 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.pagination {
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: row;
+  list-style-type: none;
+  float: right;
+}
+.pagination > li {
+  gap: 10px;
+  padding: 0 0.4rem;
+}
+.pagination > li a {
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pagination > li.previous a,
+.pagination > li.next a,
+.pagination > li.break a {
+  border-color: transparent;
+}
+.pagination > li.active a {
+  background-color: transparent;
+  border: 1px solid black;
+  color: black;
+  min-width: 32px;
+}
+.pagination > li.disabled a {
+  color: grey;
+}
+.pagination > li.disable,
+.pagination > li.disabled a {
+  cursor: default;
 }
