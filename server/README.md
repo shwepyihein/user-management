@@ -58,6 +58,17 @@ $ yarn run test:e2e
 $ yarn run test:cov
 ```
 
+## create .env file
+
+```setup
+JWT_SECRET=My!ecret007
+PGUSER=postgresuser
+PGHOST=127.0.0.1
+PGDATABASE=userdb
+PGPASSWORD=postgresuser
+PGPORT=5432
+```
+
 ## Support
 
 Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
