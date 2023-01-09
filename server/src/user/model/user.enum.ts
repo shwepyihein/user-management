@@ -6,5 +6,11 @@ export enum UserRole {
 
 export enum UserType {
   MALE = 'Mr.',
-  FEMALE = 'Miss',
+  FEMALE = 'Mrs.',
+  MISS = 'Miss.',
+}
+
+export enum MartialStatusType {
+  SINGLE = 'single',
+  MARRIED = 'married',
 }

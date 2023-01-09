@@ -79,12 +79,13 @@ export class UserService {
 
   async getUserDetail({ id }) {
     const user = await this.userRepo.findOne({ where: { id: id } });
+    delete user.password;
     return user;
   }
 
   async getUpdateUser({ id, data }) {
-    console.log(data);
-    const user = await this.userRepo.findOne({ where: { id: id } });
-    return user;
+    await this.userRepo.update(id, { ...data });
+
+    return { message: 'success' };
   }
 }
