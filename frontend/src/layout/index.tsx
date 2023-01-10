@@ -22,7 +22,7 @@ export default function Layout({ children }: LayoutProps) {
             <>
               <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div className="flex h-16 justify-between">
-                  <div className="flex">
+                  <Link to="/" className="flex items-center">
                     <div className="flex flex-shrink-0 items-center">
                       <img
                         className="block h-8 w-auto lg:hidden"
@@ -35,7 +35,7 @@ export default function Layout({ children }: LayoutProps) {
                         alt="Your Company"
                       />
                     </div>
-                  </div>
+                  </Link>
                   <div className="ml-6 flex items-center">
                     {/* Profile dropdown */}
                     <Menu as="div" className="relative ml-3">

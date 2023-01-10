@@ -5,6 +5,8 @@ import * as yup from "yup";
 import { classNames } from "../utils";
 import { useMutation } from "react-query";
 import { doSignIn } from "../api/user/user";
+import { toast } from "react-toastify";
+import { Helmet } from "react-helmet";
 
 interface userLogin {
   user_Id: string;
@@ -47,6 +49,16 @@ export default function LoginPage() {
       },
       onError: (error: any) => {
         //
+        toast(error.response.data.message, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
       },
     }
   );
@@ -56,6 +68,10 @@ export default function LoginPage() {
   };
   return (
     <>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Login | React+NestJs User Mangement</title>
+      </Helmet>
       <div className="flex flex-row-reverse min-h-screen">
         <div className="flex flex-1 flex-col justify-center py-12 px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
           <div className="mx-auto w-full max-w-sm lg:w-96">

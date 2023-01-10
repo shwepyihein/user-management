@@ -5,6 +5,8 @@ import * as yup from "yup";
 import { classNames } from "../utils";
 import { doSignUp } from "../api/user/user";
 import { useMutation } from "react-query";
+import { toast } from "react-toastify";
+import { Helmet } from "react-helmet";
 
 interface userRegister {
   user_Id: string;
@@ -23,7 +25,6 @@ const schema = yup
     confirm_password: yup
       .string()
       .test("passwords-match", "Passwords must match", function (value) {
-        console.log(value);
         return this.parent.password === value;
       }),
   })
@@ -46,6 +47,20 @@ export default function RegisterPage() {
       },
       onError: (error: any) => {
         //
+        let message;
+        if (error.response.data.message.includes("user_id")) {
+          message = "User is already exists";
+        }
+        toast(message ? message : error.response.data.message, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
       },
     }
   );
@@ -69,6 +84,11 @@ export default function RegisterPage() {
 
   return (
     <>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Register | React+NestJs User Mangement</title>
+      </Helmet>
+
       <div className="flex flex-row-reverse min-h-screen">
         <div className="flex flex-1 flex-col justify-center py-12 px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
           <div className="mx-auto w-full max-w-sm lg:w-96">

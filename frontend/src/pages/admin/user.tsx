@@ -3,6 +3,7 @@ import React from "react";
 import { useQuery } from "react-query";
 import { fetchUserList } from "../../api/user/user";
 import ReactPaginate from "react-paginate";
+import { Helmet } from "react-helmet";
 
 const UserListpage = () => {
   const [filter, setFitler] = React.useState({
@@ -36,6 +37,10 @@ const UserListpage = () => {
     <div>Error: </div>
   ) : (
     <div className="max-w-7xl py-10 mt-3 mx-auto px-10">
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>UserList | React+NestJs User Mangement</title>
+      </Helmet>
       <div className="flex justify-between items-center">
         <h1 className="text-4xl font-bold">My Contacts </h1>
         <div className="flex gap-2">

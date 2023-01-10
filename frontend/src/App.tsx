@@ -7,6 +7,8 @@ import LoginPage from "./pages/login";
 import RegisterPage from "./pages/register";
 import ProtectedRoutes from "./utils/protectRoutes";
 import UnProtectedRoutes from "./utils/unProtectedRoutes";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 
 const queryClient = new QueryClient();
 
@@ -26,6 +28,7 @@ function App() {
           <Route path="*" element={<div>Error</div>} />
         </Routes>
       </QueryClientProvider>
+      <ToastContainer />
     </div>
   );
 }
