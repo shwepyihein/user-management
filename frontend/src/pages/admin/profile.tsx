@@ -104,10 +104,12 @@ export default function ProfilePage() {
     register,
     handleSubmit,
     reset,
+    getValues,
     formState: { errors },
   } = useForm({
     defaultValues: {
       user_Id: "",
+
       email: "",
       martial_status: "",
       salutation: "",
@@ -131,15 +133,14 @@ export default function ProfilePage() {
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = (submitData: userUpdate) => {
-    //
-
-    UpdateUserDetail(submitData);
+  const onSubmit = async (submitData: userUpdate) => {
+    console.log("submit");
+    await UpdateUserDetail(submitData);
   };
 
   useEffect(() => {
     reset(userDetail?.data);
-  }, []);
+  }, [userDetail]);
 
   const navigation = personalNavigation.filter((item, idx) =>
     userDetail?.data.martial_status === "married" && idx === 2 ? null : item
@@ -272,7 +273,6 @@ export default function ProfilePage() {
                                 id="salutation"
                                 {...register("salutation")}
                                 className="mt-1 block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                                defaultValue="US"
                               >
                                 <option value={"Mr."}>MR .</option>
                                 <option value={"Mrs."}>MRS .</option>
