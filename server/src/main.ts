@@ -3,27 +3,24 @@ import { AppModule } from './app.module';
 import * as bodyParser from 'body-parser';
 import { ValidationPipe } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { useContainer } from 'class-validator';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  useContainer(app.select(AppModule), { fallbackOnErrors: true });
+  app.useGlobalPipes(new ValidationPipe());
 
   app.enableCors();
-  app.useGlobalPipes(
-    new ValidationPipe({
-      transform: true,
-    }),
-  );
+
   app.setGlobalPrefix('/');
   const swaggerOption = new DocumentBuilder()
     .setTitle(' API Documentation')
     .setDescription(' API Documention')
     .setVersion('1.0.0')
-    .addBearerAuth()
     .build();
-  const swaggerDoc = SwaggerModule.createDocument(app, swaggerOption, {
-    ignoreGlobalPrefix: false,
-  });
-  SwaggerModule.setup('api/docs', app, swaggerDoc);
+
+  const swaggerDoc = SwaggerModule.createDocument(app, swaggerOption);
+  SwaggerModule.setup('/api/docs', app, swaggerDoc);
   await app.listen(8000);
 }
 bootstrap();
