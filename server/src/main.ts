@@ -14,12 +14,11 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe());
 
   app.enableCors();
-
-  app.setGlobalPrefix('/');
   const swaggerOption = new DocumentBuilder()
     .setTitle(' API Documentation')
     .setDescription(' API Documention')
     .setVersion('1.0.0')
+    .addServer('http://139.59.225.230/api/')
     .build();
 
   const swaggerDoc = SwaggerModule.createDocument(app, swaggerOption);
